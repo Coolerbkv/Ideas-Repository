@@ -1,0 +1,54 @@
+﻿@model Ideas_Repository.Models.GridModel
+<div id="grid">
+    <table>
+        <thead>
+            <tr>
+                <td>
+                    <h4>Title</h4>
+                </td>
+                <td>
+                    <h4>Message</h4>
+                </td>
+                <td>
+                    <h4>User Name</h4>
+                </td>
+                <td>
+                    <h4>Date Added</h4>
+                </td>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model.BulletinBoardList)
+            {
+                <tr>
+                    <td class="title">
+                        <div>
+                            @Html.DisplayFor(modelItem => item.Title)
+                        </div>
+                    </td>
+                    <td class="message">
+                        <div>
+                            @Html.Raw(item.Message)
+                        </div>
+                    </td>
+                    <td>
+                        @Html.Raw(item.UserName)
+                    </td>
+                    <td>
+                        @Html.Raw(item.DateOfCreateItem)
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+    <nav>
+        <ul class="pagination">
+            @for (int i = 1; i <= Model.PagesNumber; i++)
+            {
+                <li>
+                    @Ajax.ActionLink(i.ToString(), "UpdatePageNumber", new { pageNumber = i }, new AjaxOptions() { HttpMethod = "Get", UpdateTargetId = "grid" }, new { @class = Html.Raw(i == Model.CurrentPageNumber ? "active" : String.Empty) })
+                </li>
+            }
+        </ul>
+    </nav>
+</div>

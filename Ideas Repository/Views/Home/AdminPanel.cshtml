@@ -1,0 +1,68 @@
+﻿@model IEnumerable<Ideas_Repository.Models.BulletinBoardItem>
+
+@{
+    ViewBag.Title = "Admin Panel";
+}
+
+<h2>Admin Panel</h2>
+
+<p>
+    @Html.ActionLink("Removed ideas", "InfoConfirmDeletion")
+</p>
+<table>
+    <tr>
+        <td>
+            <h4>Title</h4>
+        </td>
+        <td>
+            <h4>Message</h4>
+        </td>
+        <td>
+            <h4>User Name</h4>
+        </td>
+        <td>
+            <h4>Date Added</h4>
+        </td>
+        <td>
+            <h4>Remove by Admin</h4>
+        </td>
+        <td>
+            <h4>Remove by User</h4>
+        </td>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td class="title">
+                <div>
+                    @Html.DisplayFor(modelItem => item.Title)
+                </div>
+            </td>
+            <td class="message">
+                <div>
+                    @Html.Raw(item.Message)
+                </div>
+            </td>
+            <td>
+                @Html.Raw(item.UserName)
+            </td>
+            <td>
+                @Html.Raw(item.DateOfCreateItem)
+            </td>
+            <td>
+                @Html.Raw(item.RemovedByAdmin)
+            </td>
+            <td>
+                @Html.Raw(item.RemovedByUser)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
+                @Html.ActionLink("Delete", "Delete", new { id = item.Id })
+            </td>
+
+        </tr>
+    }
+
+</table>

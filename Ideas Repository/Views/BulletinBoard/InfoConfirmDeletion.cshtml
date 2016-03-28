@@ -1,0 +1,53 @@
+﻿@model IEnumerable<Ideas_Repository.Models.BulletinBoardItem>
+
+@{
+    ViewBag.Title = "Confirm Permanent Deletion";
+}
+
+<h2>Confirm Permanent Deletion</h2>
+
+<table>
+    <tr>
+        <td>
+            <h4>Title</h4>
+        </td>
+        <td>
+            <h4>Message</h4>
+        </td>
+        <td>
+            <h4>User Name</h4>
+        </td>
+        <td>
+            <h4>Date Added</h4>
+        </td>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td class="title">
+                <div>
+                    @Html.DisplayFor(modelItem => item.Title)
+                </div>
+            </td>
+            <td class="message">
+                <div>
+                    @Html.Raw(item.Message)
+                </div>
+            </td>
+            <td>
+                @Html.Raw(item.UserName)
+            </td>
+            <td>
+                @Html.Raw(item.DateOfCreateItem)
+            </td>
+            <td>
+                @Html.ActionLink("Delete", "Delete", new { id = item.Id })
+            </td>
+        </tr>
+    }
+</table>
+<div>
+    @Html.ActionLink("Back", "Index")
+</div>

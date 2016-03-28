@@ -1,0 +1,33 @@
+﻿@model Ideas_Repository.Models.BulletinBoardItem
+@{
+    ViewBag.Title = "Restore";
+}
+
+<h2>Restore</h2>
+
+<h3>Are you sure you want to restore this?</h3>
+<fieldset>
+    <legend>BulletinBoardItem</legend>
+
+    <div class="display-label">
+        @Html.DisplayNameFor(model => model.Title)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Title)
+    </div>
+
+    <div class="display-label">
+        @Html.DisplayNameFor(model => model.Message)
+    </div>
+    <div class="display-field">
+        @Html.Raw(Model.Message)
+    </div>
+</fieldset>
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    <p>
+        <input type="submit" value="Restore" />
+        @Html.ActionLink("Back", "InfoConfirmDeletion")
+    </p>
+}

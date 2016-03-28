@@ -1,0 +1,26 @@
+﻿@model Ideas_Repository.Models.GridModel
+@{
+    ViewBag.Title = "Ideas Repository";
+}
+@section featured {
+    <section class="featured">
+        <div class="content-wrapper">
+            <hgroup class="title">
+                <h1>@ViewBag.Title.</h1>
+                <h2>@ViewBag.Message</h2>
+            </hgroup>
+            <p>
+                An online repository where people can share their project ideas,
+                or where they come to find ideas for their projects.
+            </p>
+        </div>
+    </section>
+}
+<h3>We suggest the following:</h3>
+<div id="grid">
+    @Html.Partial("_GeneralGrid", Model)
+</div>
+@section scripts
+{
+    <script src="~/Scripts/jquery.unobtrusive-ajax.min.js"></script>
+}
